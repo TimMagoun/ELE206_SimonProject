@@ -1,0 +1,198 @@
+$date
+	Fri Nov 17 17:58:15 2017
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module SimonControlTest $end
+$var wire 1 ! w_en $end
+$var wire 3 " mode_leds [2:0] $end
+$var wire 1 # load_level $end
+$var wire 1 $ index_cnt $end
+$var wire 1 % index_clr $end
+$var wire 1 & disp_mem $end
+$var wire 1 ' count_cnt $end
+$var wire 1 ( count_clr $end
+$var reg 1 ) clk $end
+$var reg 1 * index_lt_count $end
+$var reg 1 + pattern_eq_mem $end
+$var reg 1 , pattern_valid $end
+$var reg 1 - rst $end
+$scope module ctrl $end
+$var wire 1 ) clk $end
+$var wire 1 * index_lt_count $end
+$var wire 1 + pattern_eq_mem $end
+$var wire 1 , pattern_valid $end
+$var wire 1 - rst $end
+$var reg 1 ( count_clr $end
+$var reg 1 ' count_cnt $end
+$var reg 1 & disp_mem $end
+$var reg 1 % index_clr $end
+$var reg 1 $ index_cnt $end
+$var reg 1 # load_level $end
+$var reg 3 . mode_leds [2:0] $end
+$var reg 2 / next_state [1:0] $end
+$var reg 2 0 state [1:0] $end
+$var reg 1 ! w_en $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx 0
+bx /
+b0 .
+0-
+0,
+0+
+0*
+0)
+0(
+0'
+0&
+0%
+0$
+0#
+b0 "
+0!
+$end
+#10
+1#
+1(
+1-
+#30
+b1 "
+b1 .
+b0 /
+b0 0
+1)
+#40
+0)
+#60
+b1 "
+b1 .
+0#
+0(
+0-
+#80
+1%
+1!
+b1 "
+b1 .
+b1 /
+1,
+#100
+1&
+b10 "
+b10 .
+0!
+1%
+b10 /
+b1 0
+1)
+#110
+0)
+#130
+b10 "
+b10 .
+1&
+1%
+0,
+#150
+1$
+b10 "
+b10 .
+1&
+0%
+b1 /
+1*
+#170
+1)
+#180
+0)
+#200
+1%
+b10 "
+b10 .
+1&
+0$
+b10 /
+0*
+#220
+b100 "
+b100 .
+0&
+1%
+b11 /
+b10 0
+1)
+#230
+0)
+#270
+1'
+b100 "
+b100 .
+0%
+b0 /
+1+
+#290
+b1 "
+b1 .
+0'
+b0 0
+1)
+#300
+0)
+#340
+1)
+#350
+0)
+#370
+1%
+1!
+b1 "
+b1 .
+b1 /
+1,
+#390
+1&
+b10 "
+b10 .
+0!
+1%
+b10 /
+b1 0
+1)
+#400
+0)
+#440
+1'
+b100 "
+b100 .
+0&
+0%
+b0 /
+b10 0
+1)
+#450
+0)
+#470
+1%
+b100 "
+b100 .
+0'
+b11 /
+0+
+#490
+1&
+b111 "
+b111 .
+1%
+b11 0
+1)
+#500
+0)
+#510

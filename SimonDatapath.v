@@ -10,7 +10,7 @@ module SimonDatapath(
 	input        level,         // Switch for setting level
 	input  [3:0] pattern,       // Switches for creating pattern
 
-	// Datapath Control Signals
+	// Inputs from Controller
 	input     count_cnt,
 	input     count_clr,
 
@@ -23,7 +23,7 @@ module SimonDatapath(
 
 	input 	  disp_mem,
 
-	// Datapath Outputs to Control
+	// Outputs to Controller
 	output    index_lt_count,
 	output 	  pattern_eq_mem,
 	output 	  pattern_valid,
@@ -35,8 +35,9 @@ module SimonDatapath(
 	// Declare Local Vars Here
 	reg [5:0] count = 6'b0;
 	reg [5:0] index = 6'b0;
-	reg [3:0] mem_read;
+	wire [3:0] mem_read;
 	reg level_reg;
+
 	//----------------------------------------------------------------------
 	// Internal Logic -- Manipulate Registers, ALU's, Memories Local to
 	// the Datapath
@@ -69,7 +70,7 @@ module SimonDatapath(
 	// 64-entry 4-bit memory (from Memory.v) -- Fill in Ports!
 	Memory mem(
 		.clk     (clk),
-		.rst     (0),
+		.rst     (1'b0),
 		.r_addr  (index),
 		.w_addr  (count),
 		.w_data  (pattern),
@@ -81,36 +82,10 @@ module SimonDatapath(
 	// Output Logic -- Set Datapath Outputs
 	//----------------------------------------------------------------------
 
-	always @( * ) begin
-		// Compare index and count
-		if(count < index) begin
-		  	index_lt_count = 1;
-		end
-		else begin
-			index_lt_count = 0;
-		end
-
-		// Check pattern input match with mem
-		if(mem_read == pattern) begin
-			pattern_eq_mem = 1;
-		end
-		else begin
-			pattern_eq_mem = 0;	  
-		end
-
-		// Multiplexor for output leds
-		if(disp_mem) begin
-			pattern_leds = mem_read;
-		end
-		else begin
-			pattern_leds = pattern;
-		end
-		
-		// Check pattern input valid
-		pattern_valid = (!pattern[0] & pattern[1] & pattern[2] & pattern[3]) + 
-						(pattern[0] & !pattern[1] & pattern[2] & pattern[3]) + 
-						(pattern[0] & pattern[1] & !pattern[2] & pattern[3]) + 
-						(pattern[0] & pattern[1] & pattern[2] & !pattern[3]) + level_reg;
-	end
-
+	assign index_lt_count = (index<count); // Compare index and count
+	assign pattern_eq_mem = (mem_read == pattern); //Check pattern input match with memory
+	assign pattern_leds = (disp_mem) ? mem_read : pattern; //Multiplexer for output leds
+	
+	// Check pattern input valid
+	assign pattern_valid = (pattern == 4'b0001) || (pattern == 4'b0010) || (pattern == 4'b0100) || (pattern == 4'b1000) || level_reg;
 endmodule
